@@ -1,6 +1,7 @@
 import { format, differenceInDays, parse } from "date-fns";
 import { hideTables } from "./modal";
 import { hideDom } from "./modal";
+import { createSection } from "./createElement";
 
 class task {
   constructor(date, done, description, project, nombre) {
@@ -84,7 +85,9 @@ class projectClass {
     projectText.innerText = this.name;
 
     projectContainer.append(projectIcon,projectText);
-
+    projectContainer.addEventListener('click',()=>{
+      createSection(this.projectArray,this.name);
+    });
 
     return projectContainer;
 
@@ -104,6 +107,9 @@ class projectClass {
           </thead>
           <tbody id=${this.name}>
           </tbody>`;
+      if(allProjects.currentSection != 'project-container'){
+        tableProject.style.display = "none";
+      }
         this.table = tableProject;
   }
 }
@@ -150,12 +156,10 @@ const allProjects = (() => {
   let allTables = document.getElementById("all-tables");
   let index;
 
-  const pushProject = () => {
-    let inputText = document.getElementById('project-input').value;
-    let arrayProject = [];
+  const pushProject = (inputText,inputArray) => {
     let tmpProject = new projectClass(
       "",
-      arrayProject,
+      inputArray,
       inputText
     );
     let prjSection = tmpProject.createProject();

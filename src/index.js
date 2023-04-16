@@ -5,15 +5,16 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
 
-import { format, differenceInDays, parse } from "date-fns";
 import { btnEvent } from "./buttonsEvents";
 import { allTasks } from "./task";
 import { task } from "./task";
 import { allProjects } from "./task";
+import { createSection } from "./createElement";
 
-let asd = JSON.parse(localStorage.getItem("allTasks"));
-let asd2 = JSON.parse(localStorage.getItem("allProjects"));
-asd.forEach((element) => {
+let localTask = JSON.parse(localStorage.getItem("allTasks"));
+let localProjects = JSON.parse(localStorage.getItem("allProjects"));
+// Creating local tasks
+localTask.forEach((element) => {
   let tmpObject = new task(
     element.date,
     element.done,
@@ -23,9 +24,27 @@ asd.forEach((element) => {
   );
   allTasks.taskArray.push(tmpObject);
 });
-console.log(asd2);
 
-console.log(allTasks.taskArray);
+//creating local projects
+localProjects.forEach(element => {
+  let tmpArray = [];
+  element.projectArray.forEach(tarea => {
+    let tmpObject = new task(
+      tarea.date,
+      tarea.done,
+      tarea.description,
+      tarea.project,
+      tarea.nombre
+    );
+    tmpArray.push(tmpObject);
+    allTasks.taskArray.push(tmpObject);
+  });
+  allProjects.pushProject(element.name,tmpArray);
+});
+
+createSection(allTasks.taskArray,'home');
+
+
 
 
 /*
@@ -39,7 +58,6 @@ constructor(date, done, description, project, nombre) {
  */
 
 let btndebug = document.getElementById("debug");
-console.log(asd);
 
 btndebug.addEventListener("click", () => {
   /* console.log(allProjects.currentSection);
@@ -47,7 +65,8 @@ btndebug.addEventListener("click", () => {
         console.log(allProjects.projectsArray); 
         console.log(allTasks.taskArray);
         console.log(allTasks.taskArray); */
-  localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray));
+  //localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray));
+  console.log(allProjects.currentSection);
 });
 
 let btndebug2 = document.getElementById("debug2");

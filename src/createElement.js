@@ -16,6 +16,7 @@ const createElement = ()=>{
 
 const createSection = (arreglo,sect)=>{
     let auxTbody = document.getElementById(sect);
+    console.log(auxTbody);
     auxTbody.innerHTML='';
     arreglo.forEach(element => {
         let sectionElement = element.createTask();

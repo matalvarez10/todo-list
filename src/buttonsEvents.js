@@ -17,6 +17,7 @@ const btnEvent = (()=>{
     let daySection = document.getElementById('1');
     let weekSection = document.getElementById('2');
     let btnProject = document.getElementById('add-project');
+    let homeSection = document.getElementById('0');
 
     btnClose.addEventListener('click',modalDom.modalClose);
 
@@ -38,6 +39,10 @@ const btnEvent = (()=>{
         sections[index].addEventListener('click',hideDom);  
     }
 
+    homeSection.addEventListener('click',()=>{
+        createSection(allTasks.taskArray,'home');
+    });
+
     daySection.addEventListener('click',()=>{
         allTasks.filterDay();
         createSection(allTasks.dayTasks,'today');
@@ -48,7 +53,11 @@ const btnEvent = (()=>{
         createSection(allTasks.weekTasks,'weekid');
     });
 
-    btnProject.addEventListener('click',allProjects.pushProject);
+    btnProject.addEventListener('click',()=>{
+        let inputText = document.getElementById('project-input').value;
+        let arrayProject = [];
+        allProjects.pushProject(inputText,arrayProject);
+    });
 
     
 
