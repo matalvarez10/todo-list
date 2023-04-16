@@ -66,7 +66,7 @@ class projectClass {
     this.projectArray = projectArray;
     this.name = name;
   }
-  createProject (){
+  createProject2 (){
     let inputText = document.getElementById('project-input').value;
     
 

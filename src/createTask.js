@@ -3,7 +3,7 @@ import { task } from "./task";
 
 
 
-/* const createProject = ()=>{
+ const createProject = ()=>{
     let inputText = document.getElementById('project-input').value;
     
 
@@ -42,5 +42,5 @@ import { task } from "./task";
     return [projectContainer,tableProject];
 
 };
- */
+
 export{task,createProject};
