@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+  </head>
+  <body>
+    <div class="backdrop"></div>
+    <header>
+      <i id="header-logo" class="fas fa-check-double"></i>
+      <h1>Homer's To Do List</h1>
+    </header>
+    <aside>
+      <div id="0" class="icon" value ="home-section">
+          <i class="fas fa-check"></i>
+          <p>Home</p>
+      </div>
+      <div  id = "1" class="icon" value ="day-section">
+          <i class="fas fa-calendar-day"></i>
+          <p>Today</p>
+      </div>
+      <div id="2" class="icon" value ="week-section">
+          <i class="fas fa-calendar-week"></i>
+          <p>Week</p>
+      </div>
+      <div id="3" class="icon" value ="project-section">
+        <i class="fas fa-book"></i>
+          <p>Projects</p>
+      </div>
+      <div id="projects">
+        <button id="add-project">
+          <i class="fas fa-plus"></i>
+          <span> Add Project</span>
+        </button>
+      <input type="text" id="project-input" placeholder="Enter project name">
+        <div class="project-container">
+          <i class="fas fa-list-ol"></i>
+          <span>Build website</span>
+        </div>
+        <div class="project-container">
+          <i class="fas fa-list-ol"></i>
+          <span>Build website</span>
+        </div>
+      </div>
+    </aside>
+    <main>
+        <div id="main-header">
+            <h1>All Tasks</h1>
+            <button id="modal-trigger">
+                <i class="fas fa-plus"></i>
+                <span> Add Task</span>
+            </button>
+        </div>
+      <table value="home-section" class="divisiones">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Task</th>
+            <th>Due Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="home">
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
+                <td>11/04/2023</td>
+                <td><i class="fas fa-edit"></i></td>
+                <td><i class="fas fa-trash-alt"></i></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>Learning Python</td>
+                <td>11/04/2023</td>
+                <td><i class="fas fa-edit"></i></td>
+                <td><i class="fas fa-trash-alt"></i></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>Learning Python</td>
+                <td>11/04/2023</td>
+                <td><i class="fas fa-edit"></i></td>
+                <td><i class="fas fa-trash-alt"></i></td>
+            </tr>
+        </tbody>
+      </table>
+      <!-- Table day -->
+      <table value="day-section" class="divisiones" style="display: none;">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Task</th>
+            <th>Due Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="today">
+        </tbody>
+      </table>
+      <!-- Table Week -->
+      <table value="week-section" class="divisiones" style="display: none;">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Task</th>
+            <th>Due Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="weekid">
+        </tbody>
+      </table>
+      <button id="debug">saasiauifg</button>
+      <button id="debug2">recover info</button>
+      <div id="all-tables" value ="project-section" class="divisiones">
+        <p>HOLAAA</p>
+      </div>
+    </main>
+    <div id="modal">
+      <input type="text"  id="nameInput" placeholder="Name of the task">
+      <input type="text"  id="descInput" placeholder="Description">
+      <input type="date"  id="dateInput">
+      <div id="wrapper">
+        <button id="btnCancel">Cancel</button>
+        <button id="btnAdd">Add Task</button>
+      </div>
+  </body>
+  <script src="main.js"></script>
+</html>
