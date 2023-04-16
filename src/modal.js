@@ -38,4 +38,14 @@ function hideTables(){
   );
 }
 
-export { modalDom, hideDom,hideTables };
+function hideProjectSection(){
+  let projectSection = document.getElementById("projects");
+  projectSection.classList.toggle("hidden");
+}
+
+function hideInputSection(){
+  let addSection = document.getElementById("wrap-hide");
+  addSection.classList.toggle("hidden");
+}
+
+export { modalDom, hideDom,hideTables,hideProjectSection,hideInputSection };

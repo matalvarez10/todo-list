@@ -188,10 +188,11 @@ table {
   display: flex !important ;
 }
 
-.projects{
-  display: flex;
-  flex-direction: column;
+#projects{
+  max-height: 0;
+  overflow: hidden;
   margin-top: -10px;
+  transition: max-height 0.2s linear;
 }
 
 #add-project{
@@ -201,21 +202,62 @@ table {
   font-size: 1rem;
   cursor: pointer;
   margin-left: 35px;
+  margin-bottom: 5px;
 
 }
 
 
 #project-input{
   width: 70%;
-  border: 0.5px solid #eeeee3;
+  border: 0.5px solid #d4d4d4;
+  border-radius: 5px;
   height: 25px;
-  margin-left: 35px;
+  margin: 5px 0 5px 35px;
   font-family: inherit;
   padding-left: 5px;
   background-color: inherit;
 }
 .project-container{
   font-size: 14px;
-  margin-left: 45px;
+  margin: 2px 0 2px 45px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  
+}
+.project-container>svg{
+  margin-top: 2px;
 }
 
+
+
+#project-confirm{
+  margin-left: 45px;
+  font-family: inherit;
+  background-color: #d10000;
+    font-size: 0.8rem;
+  border: none;
+  height: 25px;
+  width: 100px;
+  color: #eeeee3;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#project-confirm:hover{
+  background-color: #d4d4d4;
+  color: black;
+}
+
+.hidden{
+  max-height: 500px !important;
+  height: auto;
+}
+
+#wrap-hide{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s linear;
+}

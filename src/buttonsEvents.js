@@ -4,6 +4,8 @@ import { allTasks } from './task';
 import { hideDom } from './modal';
 import { createSection } from './createElement';
 import { allProjects } from './task';
+import { hideProjectSection } from './modal';
+import { hideInputSection } from './modal';
 
 
 
@@ -16,8 +18,10 @@ const btnEvent = (()=>{
     let sections = document.querySelectorAll(".main");
     let daySection = document.getElementById('1');
     let weekSection = document.getElementById('2');
-    let btnProject = document.getElementById('add-project');
+    let btnProject = document.getElementById('project-confirm');
     let homeSection = document.getElementById('0');
+    let projectSectionButton = document.getElementById("3");
+    let addProjectBtn = document.getElementById("add-project");
 
     btnClose.addEventListener('click',modalDom.modalClose);
 
@@ -54,10 +58,16 @@ const btnEvent = (()=>{
     });
 
     btnProject.addEventListener('click',()=>{
-        let inputText = document.getElementById('project-input').value;
+        let inputText = document.getElementById('project-input');
         let arrayProject = [];
-        allProjects.pushProject(inputText,arrayProject);
+        allProjects.pushProject(inputText.value,arrayProject);
+        inputText.value = "";
+        hideInputSection();
     });
+
+    projectSectionButton.addEventListener('click',hideProjectSection);
+
+    addProjectBtn.addEventListener('click',hideInputSection);
 
     
 
