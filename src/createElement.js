@@ -1,4 +1,4 @@
-import { task } from './createTask';
+import { task } from './task';
 
 const createElement = ()=>{
     let inputs = document.querySelectorAll('#modal>input');

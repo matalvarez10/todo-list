@@ -1,6 +1,6 @@
 import { format, differenceInDays, parse } from "date-fns";
-import { createProject } from "./createTask";
 import { hideTables } from "./modal";
+import { hideDom } from "./modal";
 
 class task {
   constructor(date, done, description, project, nombre) {
@@ -66,14 +66,12 @@ class projectClass {
     this.projectArray = projectArray;
     this.name = name;
   }
-  createProject2 (){
-    let inputText = document.getElementById('project-input').value;
-    
+  createProject (){
 
     let projectContainer = document.createElement('div');
     projectContainer.classList.add('project-container');
     projectContainer.setAttribute('value','project-section');
-    projectContainer.setAttribute('data-valor',inputText);
+    projectContainer.setAttribute('data-valor',this.name);
     projectContainer.style.cursor = "pointer";
 
     projectContainer.addEventListener('click',hideDom);
@@ -83,28 +81,31 @@ class projectClass {
     projectIcon.classList.add('fas','fa-list-ol');
 
     let projectText = document.createElement('span');
-    projectText.innerText = inputText;
+    projectText.innerText = this.name;
 
     projectContainer.append(projectIcon,projectText);
 
-    // creating project table
-    let tableProject = document.createElement('table');
-    tableProject.setAttribute('value',inputText);
-    tableProject.innerHTML = `
-        <thead>
-          <tr>
-            <th></th>
-            <th>Task</th>
-            <th>Due Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id=${inputText}>
-        </tbody>`;
 
-    return [projectContainer,tableProject];
+    return projectContainer;
 
 }
+
+  createTable(){
+      let tableProject = document.createElement('table');
+      tableProject.setAttribute('value',this.name);
+      tableProject.innerHTML = `
+          <thead>
+            <tr>
+              <th></th>
+              <th>Task</th>
+              <th>Due Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id=${this.name}>
+          </tbody>`;
+        this.table = tableProject;
+  }
 }
 
 const allTasks = (() => {
@@ -150,18 +151,19 @@ const allProjects = (() => {
   let index;
 
   const pushProject = () => {
-    let auxProject = createProject();
-    console.log(auxProject[0]);
-    auxProject[0].addEventListener("click", hideTables);
+    let inputText = document.getElementById('project-input').value;
     let arrayProject = [];
     let tmpProject = new projectClass(
-      auxProject[1],
+      "",
       arrayProject,
-      auxProject[1].getAttribute("value")
+      inputText
     );
+    let prjSection = tmpProject.createProject();
+    prjSection.addEventListener("click", hideTables);
     allProjects.projectsArray.push(tmpProject);
-    allProjects.projectList.append(auxProject[0]);
-    allProjects.allTables.append(auxProject[1]);
+    allProjects.projectList.append(prjSection);
+    tmpProject.createTable();
+    allProjects.allTables.append(tmpProject.table); 
   };
 
   const checkProject = (tempTask)=>{
