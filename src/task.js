@@ -107,9 +107,8 @@ class projectClass {
           </thead>
           <tbody id=${this.name}>
           </tbody>`;
-      if(allProjects.currentSection != 'project-container'){
         tableProject.style.display = "none";
-      }
+
         this.table = tableProject;
   }
 }

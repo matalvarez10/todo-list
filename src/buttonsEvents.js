@@ -13,7 +13,7 @@ const btnEvent = (()=>{
     let btnClose = document.getElementById('btnCancel');
     let btnAdd = document.getElementById('btnAdd');
     let tbody = document.getElementById('home');
-    let sections = document.querySelectorAll(".icon");
+    let sections = document.querySelectorAll(".main");
     let daySection = document.getElementById('1');
     let weekSection = document.getElementById('2');
     let btnProject = document.getElementById('add-project');
