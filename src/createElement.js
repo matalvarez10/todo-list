@@ -1,11 +1,15 @@
-import { task } from './task';
+import { allProjects, allTasks, task } from './task';
 
 const createElement = ()=>{
     let inputs = document.querySelectorAll('#modal>input');
+    let auxProjectText="none";
+    if(allProjects.currentSection == "project-container"){
+        auxProjectText= allProjects.currentTbody;
+    }
     let auxTask= new task(inputs[2].value,
         'no',
         inputs[1].value,
-        'none',
+        auxProjectText,
         inputs[0].value
         );
     /* allTasks.taskArray.push(auxTask);

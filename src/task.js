@@ -2,6 +2,7 @@ import { format, differenceInDays, parse } from "date-fns";
 import { hideTables } from "./modal";
 import { hideDom } from "./modal";
 import { createSection } from "./createElement";
+import { modalDom } from "./modal";
 
 class task {
   constructor(date, done, description, project, nombre) {
@@ -10,6 +11,10 @@ class task {
     this.description = description;
     this.project = project;
     this.nombre = nombre;
+  }
+
+  getIndex(){
+    return 
   }
 
   createTask (){
@@ -39,10 +44,32 @@ class task {
       let index = allTasks.taskArray.indexOf(this);
       allTasks.taskArray.splice(index, 1);
     });
+
+    editWrapper.addEventListener('click',()=>{
+      let btnAdd= document.getElementById("btnAdd");
+      let btnEdit= document.getElementById("btnEdit");
+      btnAdd.style.display = "none";
+      btnEdit.style.display = "block";
+      allTasks.editFlag = "edit";
+      modalDom.modalDisplay();
+      allTasks.btnIndex = allTasks.taskArray.indexOf(this);
+      allTasks.trReference = tr;
+    })
+
+   
   
     //creating input tag
     let inputCheck = document.createElement('input');
     inputCheck.setAttribute('type','checkbox');
+    inputCheck.addEventListener('change', function() {
+      if (this.checked) {
+        tdDescription.classList.toggle("texto-tachado");
+        tdDate.classList.toggle("texto-tachado");
+      } else {
+        tdDescription.classList.toggle("texto-tachado");
+        tdDate.classList.toggle("texto-tachado");
+      }
+    });
   
   
   
@@ -52,6 +79,7 @@ class task {
     tdDate.innerText =this.date;
     tdEdit.append(editWrapper);
     tdDelete.append(deleteWrapper);
+
   
     // creating final row
     tr.append(tdStatus,tdDescription,tdDate,tdEdit,tdDelete);
@@ -84,9 +112,31 @@ class projectClass {
     let projectText = document.createElement('span');
     projectText.innerText = this.name;
 
-    projectContainer.append(projectIcon,projectText);
+    let deleteProjectWrapper = document.createElement('span');
+    deleteProjectWrapper.classList.add("deleteWrapper");
+    let iconDeleteProject = document.createElement('i');
+    iconDeleteProject.classList.add("fas","fa-trash-alt");
+    deleteProjectWrapper.append(iconDeleteProject);
+
+    projectContainer.append(projectIcon,projectText,deleteProjectWrapper);
     projectContainer.addEventListener('click',()=>{
-      createSection(this.projectArray,this.name);
+    createSection(this.projectArray,this.name);
+
+    });
+    projectContainer.addEventListener('mouseover',()=>{
+      deleteProjectWrapper.style.display = "block";
+    });
+    projectContainer.addEventListener('mouseout',()=>{
+      deleteProjectWrapper.style.display = "none";
+    });
+    deleteProjectWrapper.addEventListener('click',()=>{
+      projectContainer.remove();
+      this.table.remove();
+      let index = allProjects.projectsArray.indexOf(this);
+      allProjects.projectsArray.splice(index, 1);
+      allTasks.taskArray = allTasks.taskArray.filter((tareaTmp)=>{
+        return tareaTmp.project != this.name;
+      });
     });
 
     return projectContainer;
@@ -117,6 +167,8 @@ const allTasks = (() => {
   let taskArray = [];
   let dayTasks = [];
   let weekTasks = [];
+  let btnIndex ;
+  let trReference;
 
   const filterDay = () => {
     allTasks.dayTasks = allTasks.taskArray.filter((element) => {
@@ -144,7 +196,7 @@ const allTasks = (() => {
       }
     });
   };
-  return { taskArray, dayTasks, weekTasks, filterDay, filterWeek };
+  return { taskArray, dayTasks, weekTasks, filterDay, filterWeek, btnIndex,trReference };
 })();
 
 const allProjects = (() => {
@@ -171,9 +223,11 @@ const allProjects = (() => {
 
   const checkProject = (tempTask)=>{
     if(allProjects.currentSection == 'project-container'){
-        let tmpTbody = document.querySelector(`[value=${allProjects.currentTbody}]`);
+        let tmpTbody = document.querySelector(`[id=${String(allProjects.currentTbody)}]`);
         console.log(allProjects.currentTbody);
+        console.log("-----");
         console.log(tmpTbody);
+        console.log("lolein");
         allProjects.index = allProjects.projectsArray.findIndex(item => item.name == allProjects.currentTbody);
         allProjects.projectsArray[allProjects.index].projectArray.push(tempTask);
         tmpTbody.append(tempTask.createTask());

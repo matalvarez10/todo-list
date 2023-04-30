@@ -14,7 +14,7 @@ import { createSection } from "./createElement";
 let localTask = JSON.parse(localStorage.getItem("allTasks"));
 let localProjects = JSON.parse(localStorage.getItem("allProjects"));
 // Creating local tasks
-localTask.forEach((element) => {
+ localTask.forEach((element) => {
   let tmpObject = new task(
     element.date,
     element.done,
@@ -23,7 +23,7 @@ localTask.forEach((element) => {
     element.nombre
   );
   allTasks.taskArray.push(tmpObject);
-});
+}); 
 
 //creating local projects
 localProjects.forEach(element => {
@@ -40,22 +40,22 @@ localProjects.forEach(element => {
     allTasks.taskArray.push(tmpObject);
   });
   allProjects.pushProject(element.name,tmpArray);
-});
+}); 
 
 createSection(allTasks.taskArray,'home');
 
 
 
 
-/*
+/* 
 constructor(date, done, description, project, nombre) {
     this.date = date;
     this.done = done;
     this.description = description;
     this.project = project;
     this.nombre = nombre;
-  } 
- */
+  } ; */
+
 
 let btndebug = document.getElementById("debug");
 
@@ -65,8 +65,10 @@ btndebug.addEventListener("click", () => {
         console.log(allProjects.projectsArray); 
         console.log(allTasks.taskArray);
         console.log(allTasks.taskArray); */
-  //localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray));
+  localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
+  console.log("xd");
   console.log(allProjects.currentSection);
+  console.log(allProjects.currentTbody);
 });
 
 let btndebug2 = document.getElementById("debug2");

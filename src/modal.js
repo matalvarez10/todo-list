@@ -1,9 +1,12 @@
 import { allProjects } from "./task";
+import { allTasks } from "./task";
 
 const modalDom = (() => {
   let modal = document.getElementById("modal");
   let backdrop = document.querySelector(".backdrop");
   const modalDisplay = () => {
+
+    console.log(allTasks.editFlag);
     modalDom.modal.classList.toggle("flex");
     modalDom.backdrop.style.display = "block";
   };
@@ -47,5 +50,6 @@ function hideInputSection(){
   let addSection = document.getElementById("wrap-hide");
   addSection.classList.toggle("hidden");
 }
+
 
 export { modalDom, hideDom,hideTables,hideProjectSection,hideInputSection };
