@@ -46,6 +46,7 @@ const btnEvent = (() => {
     let tempTask = createElement();
     console.log(tempTask);
     allTasks.taskArray.push(tempTask);
+    localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
     tbody.append(tempTask.createTask());
     allProjects.checkProject(tempTask);
     modalDom.modalClose();

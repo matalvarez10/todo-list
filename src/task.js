@@ -41,8 +41,15 @@ class task {
   
     deleteWrapper.addEventListener('click',()=>{
       tr.remove();
-      let index = allTasks.taskArray.indexOf(this);
-      allTasks.taskArray.splice(index, 1);
+      let index2 = allTasks.taskArray.indexOf(this);
+      allTasks.taskArray.splice(index2, 1);
+      if(this.project != "none"){
+        let index = allProjects.projectsArray.findIndex(user => user.name === this.project);
+        let nDelete = allProjects.projectsArray[index].projectArray.indexOf(this);
+        allProjects.projectsArray[index].projectArray.splice(nDelete,1);
+        localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
+      }
+      localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
     });
 
     editWrapper.addEventListener('click',()=>{
@@ -54,6 +61,7 @@ class task {
       modalDom.modalDisplay();
       allTasks.btnIndex = allTasks.taskArray.indexOf(this);
       allTasks.trReference = tr;
+      localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
     })
 
    
@@ -61,13 +69,22 @@ class task {
     //creating input tag
     let inputCheck = document.createElement('input');
     inputCheck.setAttribute('type','checkbox');
-    inputCheck.addEventListener('change', function() {
-      if (this.checked) {
+    if(this.done == "yes"){
+      tdDate.classList.toggle("texto-tachado");
+      tdDescription.classList.toggle("texto-tachado");
+      inputCheck.checked = true;
+    }
+    inputCheck.addEventListener('change', ()=> {
+      if (inputCheck.checked) {
         tdDescription.classList.toggle("texto-tachado");
         tdDate.classList.toggle("texto-tachado");
+        allTasks.taskArray[allTasks.taskArray.indexOf(this)].done= "yes";
+        localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
       } else {
         tdDescription.classList.toggle("texto-tachado");
         tdDate.classList.toggle("texto-tachado");
+        allTasks.taskArray[allTasks.taskArray.indexOf(this)].done= "no";
+        localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
       }
     });
   
@@ -137,6 +154,7 @@ class projectClass {
       allTasks.taskArray = allTasks.taskArray.filter((tareaTmp)=>{
         return tareaTmp.project != this.name;
       });
+      localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray));
     });
 
     return projectContainer;
@@ -218,7 +236,8 @@ const allProjects = (() => {
     allProjects.projectsArray.push(tmpProject);
     allProjects.projectList.append(prjSection);
     tmpProject.createTable();
-    allProjects.allTables.append(tmpProject.table); 
+    allProjects.allTables.append(tmpProject.table);
+    localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
   };
 
   const checkProject = (tempTask)=>{
@@ -231,6 +250,7 @@ const allProjects = (() => {
         allProjects.index = allProjects.projectsArray.findIndex(item => item.name == allProjects.currentTbody);
         allProjects.projectsArray[allProjects.index].projectArray.push(tempTask);
         tmpTbody.append(tempTask.createTask());
+        localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray));
     }
   };
   return {

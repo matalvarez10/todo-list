@@ -37,7 +37,7 @@ localProjects.forEach(element => {
       tarea.nombre
     );
     tmpArray.push(tmpObject);
-    allTasks.taskArray.push(tmpObject);
+    //allTasks.taskArray.push(tmpObject);
   });
   allProjects.pushProject(element.name,tmpArray);
 }); 
@@ -65,10 +65,11 @@ btndebug.addEventListener("click", () => {
         console.log(allProjects.projectsArray); 
         console.log(allTasks.taskArray);
         console.log(allTasks.taskArray); */
-  localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
-  console.log("xd");
-  console.log(allProjects.currentSection);
-  console.log(allProjects.currentTbody);
+  //localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
+  console.log(allProjects.projectsArray);
+  console.log(allTasks.taskArray);
+  localStorage.setItem("allTasks", 2);
+  localStorage.setItem("allProjects", 2);
 });
 
 let btndebug2 = document.getElementById("debug2");
