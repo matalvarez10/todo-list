@@ -24,12 +24,15 @@ const btnEvent = (() => {
   btnEdit.addEventListener('click',()=>{
     let index = allTasks.btnIndex;
     let inputs = document.querySelectorAll('#modal>input');
-    allTasks.trReference.children[2].innerText =inputs[2].value;
-    allTasks.trReference.children[1].innerText = inputs[1].value;
-    allTasks.taskArray[index].name = inputs[0].value;
-    allTasks.taskArray[index].description = inputs[1].value;
-    allTasks.taskArray[index].date = inputs[2].value; 
-    modalDom.modalClose();
+      allTasks.trReference.children[2].innerText =inputs[2].value;
+      allTasks.trReference.children[1].innerText = inputs[1].value;
+      allTasks.taskArray[index].name = inputs[0].value;
+      allTasks.taskArray[index].description = inputs[1].value;
+      allTasks.taskArray[index].date = inputs[2].value; 
+      localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
+      localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
+      modalDom.modalClose();
+      
   });
   btnClose.addEventListener("click", modalDom.modalClose);
 
@@ -46,6 +49,7 @@ const btnEvent = (() => {
     let tempTask = createElement();
     console.log(tempTask);
     allTasks.taskArray.push(tempTask);
+    localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
     localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
     tbody.append(tempTask.createTask());
     allProjects.checkProject(tempTask);

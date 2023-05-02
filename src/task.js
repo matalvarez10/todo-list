@@ -61,8 +61,7 @@ class task {
       modalDom.modalDisplay();
       allTasks.btnIndex = allTasks.taskArray.indexOf(this);
       allTasks.trReference = tr;
-      localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
-    })
+    });
 
    
   
@@ -79,12 +78,13 @@ class task {
         tdDescription.classList.toggle("texto-tachado");
         tdDate.classList.toggle("texto-tachado");
         allTasks.taskArray[allTasks.taskArray.indexOf(this)].done= "yes";
+        localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
         localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
       } else {
         tdDescription.classList.toggle("texto-tachado");
         tdDate.classList.toggle("texto-tachado");
-        allTasks.taskArray[allTasks.taskArray.indexOf(this)].done= "no";
-        localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
+        localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
+        localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray));  
       }
     });
   
@@ -244,9 +244,7 @@ const allProjects = (() => {
     if(allProjects.currentSection == 'project-container'){
         let tmpTbody = document.querySelector(`[id=${String(allProjects.currentTbody)}]`);
         console.log(allProjects.currentTbody);
-        console.log("-----");
         console.log(tmpTbody);
-        console.log("lolein");
         allProjects.index = allProjects.projectsArray.findIndex(item => item.name == allProjects.currentTbody);
         allProjects.projectsArray[allProjects.index].projectArray.push(tempTask);
         tmpTbody.append(tempTask.createTask());

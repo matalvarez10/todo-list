@@ -22,7 +22,9 @@ let localProjects = JSON.parse(localStorage.getItem("allProjects"));
     element.project,
     element.nombre
   );
-  allTasks.taskArray.push(tmpObject);
+  if(tmpObject.project == "none"){
+    allTasks.taskArray.push(tmpObject);
+    }
 }); 
 
 //creating local projects
@@ -37,7 +39,7 @@ localProjects.forEach(element => {
       tarea.nombre
     );
     tmpArray.push(tmpObject);
-    //allTasks.taskArray.push(tmpObject);
+    allTasks.taskArray.push(tmpObject);
   });
   allProjects.pushProject(element.name,tmpArray);
 }); 
