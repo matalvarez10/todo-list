@@ -6,6 +6,7 @@ import { createSection } from "./createElement";
 import { allProjects } from "./task";
 import { hideProjectSection } from "./modal";
 import { hideInputSection } from "./modal";
+import { resaltar } from "./modal";
 
 const btnEvent = (() => {
   let btnModal = document.getElementById("modal-trigger");
@@ -22,8 +23,11 @@ const btnEvent = (() => {
   let btnEdit = document.getElementById("btnEdit")
   
   btnEdit.addEventListener('click',()=>{
-    let index = allTasks.btnIndex;
-    let inputs = document.querySelectorAll('#modal>input');
+      let index = allTasks.btnIndex;
+      let inputs = document.querySelectorAll('#modal>input');
+      inputs[0].value ="";
+      inputs[1].value ="";
+      inputs[2].value ="";
       allTasks.trReference.children[2].innerText =inputs[2].value;
       allTasks.trReference.children[1].innerText = inputs[1].value;
       allTasks.taskArray[index].name = inputs[0].value;
@@ -47,24 +51,22 @@ const btnEvent = (() => {
   btnAdd.addEventListener("click", () => {
     
     let tempTask = createElement();
-    console.log(tempTask);
     allTasks.taskArray.push(tempTask);
-    localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
-    localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
     tbody.append(tempTask.createTask());
     allProjects.checkProject(tempTask);
     modalDom.modalClose();
-    console.log(allTasks.taskArray);
+    localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
+    localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
   });
 
   for (let index = 0; index < sections.length; index++) {
     sections[index].addEventListener("click", hideDom);
+    sections[index].addEventListener("click", resaltar);
   }
 
   homeSection.addEventListener("click", () => {
     createSection(allTasks.taskArray, "home");
-    console.log(allProjects.projectsArray);
-    console.log(allTasks.taskArray);
+
 
   });
 

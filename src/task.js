@@ -243,8 +243,6 @@ const allProjects = (() => {
   const checkProject = (tempTask)=>{
     if(allProjects.currentSection == 'project-container'){
         let tmpTbody = document.querySelector(`[id=${String(allProjects.currentTbody)}]`);
-        console.log(allProjects.currentTbody);
-        console.log(tmpTbody);
         allProjects.index = allProjects.projectsArray.findIndex(item => item.name == allProjects.currentTbody);
         allProjects.projectsArray[allProjects.index].projectArray.push(tempTask);
         tmpTbody.append(tempTask.createTask());

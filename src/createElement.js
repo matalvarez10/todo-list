@@ -14,13 +14,15 @@ const createElement = ()=>{
         );
     /* allTasks.taskArray.push(auxTask);
     let tmpElement = auxTask.createTask();  */
+    inputs[0].value ="";
+    inputs[1].value ="";
+    inputs[2].value ="";
     return auxTask;
 };
 
 
 const createSection = (arreglo,sect)=>{
     let auxTbody = document.getElementById(sect);
-    console.log(auxTbody);
     auxTbody.innerHTML='';
     arreglo.forEach(element => {
         let sectionElement = element.createTask();

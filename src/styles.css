@@ -85,9 +85,9 @@ main {
   margin-left: 10px;
 }
 
-.icon:hover{
+/* .icon:hover{
   background-color: #d4d4d4;
-}
+} */
 
 
 /* -------------------TABLE STYLING----------------------------------- */
@@ -239,6 +239,7 @@ table{
   border: none;
   font-size: 1rem;
   cursor: pointer;
+  margin-top: 20px;
   margin-left: 35px;
   margin-bottom: 5px;
 

@@ -29,6 +29,14 @@ function hideDom() {
   );
 }
 
+function resaltar(){
+  let allSections = document.querySelectorAll(".icon");
+  for (let index = 0; index < allSections.length; index++) {
+    allSections[index].classList.remove('active');
+  }
+  this.classList.add("active");
+}
+
 function hideTables(){
   let auxTables = document.querySelectorAll('#all-tables>table');
   let classMatch = this.dataset.valor;
@@ -42,6 +50,11 @@ function hideTables(){
 }
 
 function hideProjectSection(){
+  let allSections = document.querySelectorAll(".main");
+  for (let index = 0; index < allSections.length; index++) {
+    allSections[index].classList.remove('active');
+  }
+  this.classList.add("active");
   let projectSection = document.getElementById("projects");
   projectSection.classList.toggle("hidden");
 }
@@ -52,4 +65,4 @@ function hideInputSection(){
 }
 
 
-export { modalDom, hideDom,hideTables,hideProjectSection,hideInputSection };
+export { modalDom, hideDom,hideTables,hideProjectSection,hideInputSection,resaltar };

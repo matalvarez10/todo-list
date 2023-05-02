@@ -62,19 +62,9 @@ constructor(date, done, description, project, nombre) {
 let btndebug = document.getElementById("debug");
 
 btndebug.addEventListener("click", () => {
-  /* console.log(allProjects.currentSection);
-        console.log(allProjects.currentTbody);
-        console.log(allProjects.projectsArray); 
-        console.log(allTasks.taskArray);
-        console.log(allTasks.taskArray); */
-  //localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
-  console.log(allProjects.projectsArray);
-  console.log(allTasks.taskArray);
-  localStorage.setItem("allTasks", 2);
-  localStorage.setItem("allProjects", 2);
+
 });
 
 let btndebug2 = document.getElementById("debug2");
 btndebug2.addEventListener("click", () => {
-    localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray));
 });
