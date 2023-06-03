@@ -25,9 +25,6 @@ const btnEvent = (() => {
   btnEdit.addEventListener('click',()=>{
       let index = allTasks.btnIndex;
       let inputs = document.querySelectorAll('#modal>input');
-      inputs[0].value ="";
-      inputs[1].value ="";
-      inputs[2].value ="";
       allTasks.trReference.children[2].innerText =inputs[2].value;
       allTasks.trReference.children[1].innerText = inputs[1].value;
       allTasks.taskArray[index].name = inputs[0].value;
@@ -35,6 +32,9 @@ const btnEvent = (() => {
       allTasks.taskArray[index].date = inputs[2].value; 
       localStorage.setItem("allProjects", JSON.stringify(allProjects.projectsArray)); 
       localStorage.setItem("allTasks", JSON.stringify(allTasks.taskArray)); 
+      inputs[0].value ="";
+      inputs[1].value ="";
+      inputs[2].value ="";
       modalDom.modalClose();
       
   });

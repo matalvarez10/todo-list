@@ -59,12 +59,3 @@ constructor(date, done, description, project, nombre) {
   } ; */
 
 
-let btndebug = document.getElementById("debug");
-
-btndebug.addEventListener("click", () => {
-
-});
-
-let btndebug2 = document.getElementById("debug2");
-btndebug2.addEventListener("click", () => {
-});
